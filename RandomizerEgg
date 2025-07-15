@@ -7,14 +7,36 @@ local Player = Players.LocalPlayer
 local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
 ScreenGui.ResetOnSpawn = false
 
--- Main Frame
+-- Main Frame (HD Reddish)
 local Frame = Instance.new("Frame", ScreenGui)
 Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
 Frame.Size = UDim2.new(0, 450, 0, 200)
-Frame.BackgroundTransparency = 0.3
-Frame.BackgroundColor3 = Color3.new(0, 0, 0)
+Frame.BackgroundTransparency = 0.1
+Frame.BackgroundColor3 = Color3.fromRGB(180, 0, 30)
 Frame.BorderSizePixel = 0
+
+-- Rounded corners
+local UICorner = Instance.new("UICorner", Frame)
+UICorner.CornerRadius = UDim.new(0, 12)
+
+-- UI Gradient
+local Gradient = Instance.new("UIGradient", Frame)
+Gradient.Color = ColorSequence.new{
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 70, 90)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(120, 0, 10))
+}
+Gradient.Rotation = 45
+
+-- Drop Shadow Effect
+local Shadow = Instance.new("ImageLabel", Frame)
+Shadow.ZIndex = -1
+Shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+Shadow.Position = UDim2.new(0.5, 0, 0.5, 4)
+Shadow.Size = UDim2.new(1, 60, 1, 60)
+Shadow.BackgroundTransparency = 1
+Shadow.Image = "rbxassetid://1316045217"
+Shadow.ImageTransparency = 0.7
 
 -- Icon
 local Icon = Instance.new("ImageLabel", Frame)
@@ -25,7 +47,7 @@ Icon.BackgroundTransparency = 1
 
 -- Title
 local Title = Instance.new("TextLabel", Frame)
-Title.Text = "Youtube: MakuScripts"
+Title.Text = "Youtube: MakuScripts | EGG RANDOMIZER"
 Title.TextColor3 = Color3.new(1, 1, 1)
 Title.TextScaled = true
 Title.Font = Enum.Font.GothamBold
@@ -56,6 +78,27 @@ local ProgressBar = Instance.new("Frame", BarBackground)
 ProgressBar.Size = UDim2.new(0, 0, 1, 0)
 ProgressBar.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 ProgressBar.BorderSizePixel = 0
+
+-- Smooth corners
+local barCorner = Instance.new("UICorner", ProgressBar)
+barCorner.CornerRadius = UDim.new(0, 8)
+
+-- Glow outline
+local barStroke = Instance.new("UIStroke", ProgressBar)
+barStroke.Thickness = 2
+barStroke.Color = Color3.fromRGB(255, 100, 255)
+barStroke.Transparency = 0.2
+
+-- Gradient glow
+local barGradient = Instance.new("UIGradient", ProgressBar)
+barGradient.Color = ColorSequence.new{
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 255)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 0, 255))
+}
+barGradient.Transparency = NumberSequence.new{
+	NumberSequenceKeypoint.new(0, 0.2),
+	NumberSequenceKeypoint.new(1, 0.2)
+}
 
 TweenService:Create(ProgressBar, TweenInfo.new(20), {Size = UDim2.new(1, 0, 1, 0)}):Play()
 
@@ -89,15 +132,8 @@ task.delay(20, function()
 		task.delay(5, function()
 			msg2:Destroy()
 
-			-- 💬 Message: Random user count
-			local count = math.random(39200, 41000)
-			local msg3 = showPopup("💬 There are currently " .. tostring(count) .. " active users")
-			task.delay(5, function()
-				msg3:Destroy()
-
-				-- ✅ Load main script
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/EggRandomizer-/refs/heads/main/EggRandomizer"))()
-			end)
+			-- ✅ Load main script
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/EggRandomizer-/refs/heads/main/EggRandomizer"))()
 		end)
 	end)
 end)
