@@ -45,9 +45,9 @@ Icon.Size = UDim2.new(0, 60, 0, 60)
 Icon.Position = UDim2.new(0, 20, 0, 15)
 Icon.BackgroundTransparency = 1
 
--- Title
+-- Title (removed "EGG RANDOMIZER")
 local Title = Instance.new("TextLabel", Frame)
-Title.Text = "Youtube: MakuScripts | EGG RANDOMIZER"
+Title.Text = "Youtube: MakuScripts"
 Title.TextColor3 = Color3.new(1, 1, 1)
 Title.TextScaled = true
 Title.Font = Enum.Font.GothamBold
@@ -55,19 +55,29 @@ Title.Position = UDim2.new(0, 100, 0, 15)
 Title.Size = UDim2.new(1, -120, 0, 30)
 Title.BackgroundTransparency = 1
 
--- Subtitle
+-- Subtitle 1 (Subscribe)
 local Subtitle = Instance.new("TextLabel", Frame)
 Subtitle.Text = "Subscribe To MakuScripts"
 Subtitle.TextColor3 = Color3.fromRGB(200, 200, 200)
 Subtitle.TextScaled = true
 Subtitle.Font = Enum.Font.Gotham
-Subtitle.Position = UDim2.new(0, 0, 1, -35)
-Subtitle.Size = UDim2.new(1, 0, 0, 30)
+Subtitle.Position = UDim2.new(0, 0, 1, -65)
+Subtitle.Size = UDim2.new(1, 0, 0, 25)
 Subtitle.BackgroundTransparency = 1
 
--- Progress Bar
+-- Subtitle 2 (Egg Randomizer | Auto Age Pet)
+local FeatureLabel = Instance.new("TextLabel", Frame)
+FeatureLabel.Text = "Egg Randomizer | Auto Age Pet"
+FeatureLabel.TextColor3 = Color3.fromRGB(255, 200, 200)
+FeatureLabel.TextScaled = true
+FeatureLabel.Font = Enum.Font.GothamBold
+FeatureLabel.Position = UDim2.new(0, 0, 1, -40)
+FeatureLabel.Size = UDim2.new(1, 0, 0, 25)
+FeatureLabel.BackgroundTransparency = 1
+
+-- Progress Bar (moved up to avoid overlap)
 local BarBackground = Instance.new("Frame", Frame)
-BarBackground.Position = UDim2.new(0.05, 0, 0.65, 0)
+BarBackground.Position = UDim2.new(0.05, 0, 0.58, 0) -- fixed
 BarBackground.Size = UDim2.new(0.9, 0, 0.1, 0)
 BarBackground.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
 BarBackground.BorderSizePixel = 0
