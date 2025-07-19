@@ -1,149 +1,174 @@
--- UI LIB
 local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 
--- Screen GUI
+-- UI INIT
 local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
 ScreenGui.ResetOnSpawn = false
 
--- Main Frame (HD Reddish)
-local Frame = Instance.new("Frame", ScreenGui)
-Frame.AnchorPoint = Vector2.new(0.5, 0.5)
-Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-Frame.Size = UDim2.new(0, 450, 0, 200)
-Frame.BackgroundTransparency = 0.1
-Frame.BackgroundColor3 = Color3.fromRGB(180, 0, 30)
-Frame.BorderSizePixel = 0
+-- FUNCTION TO MAKE RED WARNING BOX
+local function createWarningBox(message)
+    local frame = Instance.new("Frame", ScreenGui)
+    frame.AnchorPoint = Vector2.new(0.5, 0.5)
+    frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+    frame.Size = UDim2.new(0, 460, 0, 100)
+    frame.BackgroundColor3 = Color3.fromRGB(180, 0, 30)
+    frame.BackgroundTransparency = 0.1
+    frame.BorderSizePixel = 0
+    frame.Name = "WarningFrame"
 
--- Rounded corners
-local UICorner = Instance.new("UICorner", Frame)
-UICorner.CornerRadius = UDim.new(0, 12)
+    local corner = Instance.new("UICorner", frame)
+    corner.CornerRadius = UDim.new(0, 12)
 
--- UI Gradient
-local Gradient = Instance.new("UIGradient", Frame)
-Gradient.Color = ColorSequence.new{
-	ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 70, 90)),
-	ColorSequenceKeypoint.new(1, Color3.fromRGB(120, 0, 10))
-}
-Gradient.Rotation = 45
+    local gradient = Instance.new("UIGradient", frame)
+    gradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 70, 90)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(120, 0, 10))
+    }
+    gradient.Rotation = 45
 
--- Drop Shadow Effect
-local Shadow = Instance.new("ImageLabel", Frame)
-Shadow.ZIndex = -1
-Shadow.AnchorPoint = Vector2.new(0.5, 0.5)
-Shadow.Position = UDim2.new(0.5, 0, 0.5, 4)
-Shadow.Size = UDim2.new(1, 60, 1, 60)
-Shadow.BackgroundTransparency = 1
-Shadow.Image = "rbxassetid://1316045217"
-Shadow.ImageTransparency = 0.7
+    local shadow = Instance.new("ImageLabel", frame)
+    shadow.ZIndex = -1
+    shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+    shadow.Position = UDim2.new(0.5, 0, 0.5, 4)
+    shadow.Size = UDim2.new(1, 60, 1, 60)
+    shadow.BackgroundTransparency = 1
+    shadow.Image = "rbxassetid://1316045217"
+    shadow.ImageTransparency = 0.7
 
--- Icon
-local Icon = Instance.new("ImageLabel", Frame)
-Icon.Image = "rbxassetid://134756219800834" -- red ninja decal
-Icon.Size = UDim2.new(0, 60, 0, 60)
-Icon.Position = UDim2.new(0, 20, 0, 15)
-Icon.BackgroundTransparency = 1
+    local label = Instance.new("TextLabel", frame)
+    label.Text = message
+    label.Size = UDim2.new(1, -40, 1, -20)
+    label.Position = UDim2.new(0, 20, 0, 10)
+    label.TextScaled = true
+    label.Font = Enum.Font.GothamBold
+    label.TextColor3 = Color3.new(1, 1, 1)
+    label.BackgroundTransparency = 1
 
--- Title (removed "EGG RANDOMIZER")
-local Title = Instance.new("TextLabel", Frame)
-Title.Text = "Youtube: MakuScripts"
-Title.TextColor3 = Color3.new(1, 1, 1)
-Title.TextScaled = true
-Title.Font = Enum.Font.GothamBold
-Title.Position = UDim2.new(0, 100, 0, 15)
-Title.Size = UDim2.new(1, -120, 0, 30)
-Title.BackgroundTransparency = 1
-
--- Subtitle 1 (Subscribe)
-local Subtitle = Instance.new("TextLabel", Frame)
-Subtitle.Text = "Subscribe To MakuScripts"
-Subtitle.TextColor3 = Color3.fromRGB(200, 200, 200)
-Subtitle.TextScaled = true
-Subtitle.Font = Enum.Font.Gotham
-Subtitle.Position = UDim2.new(0, 0, 1, -65)
-Subtitle.Size = UDim2.new(1, 0, 0, 25)
-Subtitle.BackgroundTransparency = 1
-
--- Subtitle 2 (Egg Randomizer | Auto Age Pet)
-local FeatureLabel = Instance.new("TextLabel", Frame)
-FeatureLabel.Text = "Egg Randomizer | Auto Age Pet"
-FeatureLabel.TextColor3 = Color3.fromRGB(255, 200, 200)
-FeatureLabel.TextScaled = true
-FeatureLabel.Font = Enum.Font.GothamBold
-FeatureLabel.Position = UDim2.new(0, 0, 1, -40)
-FeatureLabel.Size = UDim2.new(1, 0, 0, 25)
-FeatureLabel.BackgroundTransparency = 1
-
--- Progress Bar (moved up to avoid overlap)
-local BarBackground = Instance.new("Frame", Frame)
-BarBackground.Position = UDim2.new(0.05, 0, 0.58, 0) -- fixed
-BarBackground.Size = UDim2.new(0.9, 0, 0.1, 0)
-BarBackground.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
-BarBackground.BorderSizePixel = 0
-BarBackground.BackgroundTransparency = 0.1
-BarBackground.ClipsDescendants = true
-
-local ProgressBar = Instance.new("Frame", BarBackground)
-ProgressBar.Size = UDim2.new(0, 0, 1, 0)
-ProgressBar.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
-ProgressBar.BorderSizePixel = 0
-
--- Smooth corners
-local barCorner = Instance.new("UICorner", ProgressBar)
-barCorner.CornerRadius = UDim.new(0, 8)
-
--- Glow outline
-local barStroke = Instance.new("UIStroke", ProgressBar)
-barStroke.Thickness = 2
-barStroke.Color = Color3.fromRGB(255, 100, 255)
-barStroke.Transparency = 0.2
-
--- Gradient glow
-local barGradient = Instance.new("UIGradient", ProgressBar)
-barGradient.Color = ColorSequence.new{
-	ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 255)),
-	ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 0, 255))
-}
-barGradient.Transparency = NumberSequence.new{
-	NumberSequenceKeypoint.new(0, 0.2),
-	NumberSequenceKeypoint.new(1, 0.2)
-}
-
-TweenService:Create(ProgressBar, TweenInfo.new(20), {Size = UDim2.new(1, 0, 1, 0)}):Play()
-
--- POPUPS
-local function showPopup(text)
-	local msg = Instance.new("TextLabel", ScreenGui)
-	msg.AnchorPoint = Vector2.new(0.5, 0.5)
-	msg.Position = UDim2.new(0.5, 0, 0.4, 0)
-	msg.Size = UDim2.new(0, 500, 0, 50)
-	msg.Text = text
-	msg.TextScaled = true
-	msg.Font = Enum.Font.GothamBold
-	msg.TextColor3 = Color3.new(1, 1, 1)
-	msg.BackgroundColor3 = Color3.new(0, 0, 0)
-	msg.BackgroundTransparency = 0.3
-	msg.BorderSizePixel = 0
-	return msg
+    return frame
 end
 
--- After loading
-task.delay(20, function()
-	Frame:Destroy()
+-- SHOW WARNING FIRST
+local warningBox = createWarningBox("⚠️ WARNING: Delta Executor is detected and blocked. Please switch to a safer executor.")
 
-	-- ❗ Message: Bug warning
-	local msg1 = showPopup("❗ If it doesn't work, rejoin and try again. Too many users may bug it.")
-	task.delay(5, function()
-		msg1:Destroy()
+task.delay(4, function()
+    warningBox:Destroy()
 
-		-- ⚠️ Message: Beware of other scripts
-		local msg2 = showPopup("⚠️ Beware of other scripts — they may steal your pets!")
-		task.delay(5, function()
-			msg2:Destroy()
+    -- MAIN GUI LOADER
+    local Frame = Instance.new("Frame", ScreenGui)
+    Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+    Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+    Frame.Size = UDim2.new(0, 450, 0, 200)
+    Frame.BackgroundTransparency = 0.1
+    Frame.BackgroundColor3 = Color3.fromRGB(180, 0, 30)
+    Frame.BorderSizePixel = 0
 
-			-- ✅ Load main script
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/EggRandomizer-/refs/heads/main/EggRandomizer"))()
-		end)
-	end)
+    Instance.new("UICorner", Frame).CornerRadius = UDim.new(0, 12)
+
+    local Gradient = Instance.new("UIGradient", Frame)
+    Gradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 70, 90)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(120, 0, 10))
+    }
+    Gradient.Rotation = 45
+
+    local Shadow = Instance.new("ImageLabel", Frame)
+    Shadow.ZIndex = -1
+    Shadow.AnchorPoint = Vector2.new(0.5, 0.5)
+    Shadow.Position = UDim2.new(0.5, 0, 0.5, 4)
+    Shadow.Size = UDim2.new(1, 60, 1, 60)
+    Shadow.BackgroundTransparency = 1
+    Shadow.Image = "rbxassetid://1316045217"
+    Shadow.ImageTransparency = 0.7
+
+    local Icon = Instance.new("ImageLabel", Frame)
+    Icon.Image = "rbxassetid://134756219800834"
+    Icon.Size = UDim2.new(0, 60, 0, 60)
+    Icon.Position = UDim2.new(0, 20, 0, 15)
+    Icon.BackgroundTransparency = 1
+
+    local Title = Instance.new("TextLabel", Frame)
+    Title.Text = "Youtube: MakuScripts"
+    Title.TextColor3 = Color3.new(1, 1, 1)
+    Title.TextScaled = true
+    Title.Font = Enum.Font.GothamBold
+    Title.Position = UDim2.new(0, 100, 0, 15)
+    Title.Size = UDim2.new(1, -120, 0, 30)
+    Title.BackgroundTransparency = 1
+
+    local Subtitle = Instance.new("TextLabel", Frame)
+    Subtitle.Text = "Subscribe To MakuScripts"
+    Subtitle.TextColor3 = Color3.fromRGB(200, 200, 200)
+    Subtitle.TextScaled = true
+    Subtitle.Font = Enum.Font.Gotham
+    Subtitle.Position = UDim2.new(0, 0, 1, -65)
+    Subtitle.Size = UDim2.new(1, 0, 0, 25)
+    Subtitle.BackgroundTransparency = 1
+
+    local FeatureLabel = Instance.new("TextLabel", Frame)
+    FeatureLabel.Text = "Egg Randomizer | Auto Age Pet"
+    FeatureLabel.TextColor3 = Color3.fromRGB(255, 200, 200)
+    FeatureLabel.TextScaled = true
+    FeatureLabel.Font = Enum.Font.GothamBold
+    FeatureLabel.Position = UDim2.new(0, 0, 1, -40)
+    FeatureLabel.Size = UDim2.new(1, 0, 0, 25)
+    FeatureLabel.BackgroundTransparency = 1
+
+    local BarBackground = Instance.new("Frame", Frame)
+    BarBackground.Position = UDim2.new(0.05, 0, 0.58, 0)
+    BarBackground.Size = UDim2.new(0.9, 0, 0.1, 0)
+    BarBackground.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
+    BarBackground.BorderSizePixel = 0
+    BarBackground.BackgroundTransparency = 0.1
+    BarBackground.ClipsDescendants = true
+
+    local ProgressBar = Instance.new("Frame", BarBackground)
+    ProgressBar.Size = UDim2.new(0, 0, 1, 0)
+    ProgressBar.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
+    ProgressBar.BorderSizePixel = 0
+
+    Instance.new("UICorner", ProgressBar).CornerRadius = UDim.new(0, 8)
+    local barStroke = Instance.new("UIStroke", ProgressBar)
+    barStroke.Thickness = 2
+    barStroke.Color = Color3.fromRGB(255, 100, 255)
+    barStroke.Transparency = 0.2
+
+    local barGradient = Instance.new("UIGradient", ProgressBar)
+    barGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 255)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 0, 255))
+    }
+    barGradient.Transparency = NumberSequence.new{
+        NumberSequenceKeypoint.new(0, 0.2),
+        NumberSequenceKeypoint.new(1, 0.2)
+    }
+
+    TweenService:Create(ProgressBar, TweenInfo.new(20), {Size = UDim2.new(1, 0, 1, 0)}):Play()
+
+    -- Load after 20s
+    task.delay(20, function()
+        Frame:Destroy()
+        local msg1 = Instance.new("TextLabel", ScreenGui)
+        msg1.AnchorPoint = Vector2.new(0.5, 0.5)
+        msg1.Position = UDim2.new(0.5, 0, 0.5, 0)
+        msg1.Size = UDim2.new(0, 500, 0, 50)
+        msg1.Text = "❗ If it doesn't work, rejoin and try again. Too many users may bug it."
+        msg1.TextScaled = true
+        msg1.Font = Enum.Font.GothamBold
+        msg1.TextColor3 = Color3.new(1, 1, 1)
+        msg1.BackgroundColor3 = Color3.new(0, 0, 0)
+        msg1.BackgroundTransparency = 0.3
+        msg1.BorderSizePixel = 0
+
+        task.delay(5, function()
+            msg1:Destroy()
+            local msg2 = msg1:Clone()
+            msg2.Text = "⚠️ Beware of other scripts — they may steal your pets!"
+            msg2.Parent = ScreenGui
+            task.delay(5, function()
+                msg2:Destroy()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/EggRandomizer-/refs/heads/main/EggRandomizer"))()
+            end)
+        end)
+    end)
 end)
