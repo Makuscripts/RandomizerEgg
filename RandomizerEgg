@@ -11,7 +11,7 @@ local function createWarningBox(message)
     local frame = Instance.new("Frame", ScreenGui)
     frame.AnchorPoint = Vector2.new(0.5, 0.5)
     frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-    frame.Size = UDim2.new(0, 460, 0, 100)
+    frame.Size = UDim2.new(0, 460, 0, 120)
     frame.BackgroundColor3 = Color3.fromRGB(180, 0, 30)
     frame.BackgroundTransparency = 0.1
     frame.BorderSizePixel = 0
@@ -38,20 +38,46 @@ local function createWarningBox(message)
 
     local label = Instance.new("TextLabel", frame)
     label.Text = message
-    label.Size = UDim2.new(1, -40, 1, -20)
+    label.Size = UDim2.new(1, -40, 0, 60)
     label.Position = UDim2.new(0, 20, 0, 10)
     label.TextScaled = true
     label.Font = Enum.Font.GothamBold
     label.TextColor3 = Color3.new(1, 1, 1)
     label.BackgroundTransparency = 1
 
+    -- KRNL COPY BUTTON
+    local button = Instance.new("TextButton", frame)
+    button.Text = "USE KRNL INSTEAD (COPY KRNL LINK)"
+    button.Size = UDim2.new(0.9, 0, 0, 30)
+    button.Position = UDim2.new(0.05, 0, 1, -35)
+    button.BackgroundColor3 = Color3.fromRGB(70, 0, 0)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.TextScaled = true
+    button.Font = Enum.Font.GothamBold
+    button.AutoButtonColor = true
+    button.BorderSizePixel = 0
+
+    Instance.new("UICorner", button).CornerRadius = UDim.new(0, 8)
+
+    button.MouseButton1Click:Connect(function()
+        if setclipboard then
+            setclipboard("https://krnl.cat")
+            button.Text = "✅ LINK COPIED!"
+        else
+            button.Text = "❌ COPY NOT SUPPORTED"
+        end
+        task.delay(2, function()
+            button.Text = "USE KRNL INSTEAD (COPY KRNL LINK)"
+        end)
+    end)
+
     return frame
 end
 
 -- SHOW WARNING FIRST
-local warningBox = createWarningBox("⚠️ WARNING: Delta Executor is detected and blocked. Please switch to a safer executor.")
+local warningBox = createWarningBox("⚠️ WARNING: Delta Executor is detected and blocked. Please switch to a safer executor like KRNL.")
 
-task.delay(4, function()
+task.delay(10, function()
     warningBox:Destroy()
 
     -- MAIN GUI LOADER
