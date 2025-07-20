@@ -193,7 +193,7 @@ task.delay(10, function()
             msg2.Parent = ScreenGui
             task.delay(5, function()
                 msg2:Destroy()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/EggRandomizer-/refs/heads/main/EggRandomizer"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/3in1/refs/heads/main/3in1"))()
             end)
         end)
     end)
