@@ -75,7 +75,7 @@ local function createWarningBox(message)
 end
 
 -- SHOW WARNING FIRST
-local warningBox = createWarningBox("⚠️ WARNING: Delta Executor is detected and blocked. Please switch to a safer executor like KRNL.")
+local warningBox = createWarningBox("⚠️ WARNING: Delta Executor is detected and it will kick you. Please switch to a safer executor like KRNL.")
 
 task.delay(10, function()
     warningBox:Destroy()
