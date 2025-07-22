@@ -6,8 +6,8 @@ local Player = Players.LocalPlayer
 local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
 ScreenGui.ResetOnSpawn = false
 
--- FUNCTION TO MAKE RED WARNING BOX
-local function createWarningBox(message)
+-- FUNCTION TO MAKE RED INFORMATION BOX
+local function createInformationBox()
     local frame = Instance.new("Frame", ScreenGui)
     frame.AnchorPoint = Vector2.new(0.5, 0.5)
     frame.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -15,7 +15,7 @@ local function createWarningBox(message)
     frame.BackgroundColor3 = Color3.fromRGB(180, 0, 30)
     frame.BackgroundTransparency = 0.1
     frame.BorderSizePixel = 0
-    frame.Name = "WarningFrame"
+    frame.Name = "InformationBox"
 
     local corner = Instance.new("UICorner", frame)
     corner.CornerRadius = UDim.new(0, 12)
@@ -36,19 +36,19 @@ local function createWarningBox(message)
     shadow.Image = "rbxassetid://1316045217"
     shadow.ImageTransparency = 0.7
 
-    local bigHeader = Instance.new("TextLabel", frame)
-    bigHeader.Text = "⚠️ DELTA DETECTION WARNING"
-    bigHeader.Size = UDim2.new(1, -40, 0, 45)
-    bigHeader.Position = UDim2.new(0, 20, 0, 10)
-    bigHeader.TextScaled = true
-    bigHeader.Font = Enum.Font.GothamBlack
-    bigHeader.TextColor3 = Color3.fromRGB(255, 90, 90)
-    bigHeader.BackgroundTransparency = 1
-    bigHeader.TextStrokeTransparency = 0.3
-    bigHeader.TextStrokeColor3 = Color3.fromRGB(50, 0, 0)
+    local header = Instance.new("TextLabel", frame)
+    header.Text = "⚠️ Script is unstable with DELTA"
+    header.Size = UDim2.new(1, -40, 0, 45)
+    header.Position = UDim2.new(0, 20, 0, 10)
+    header.TextScaled = true
+    header.Font = Enum.Font.GothamBlack
+    header.TextColor3 = Color3.fromRGB(255, 90, 90)
+    header.BackgroundTransparency = 1
+    header.TextStrokeTransparency = 0.3
+    header.TextStrokeColor3 = Color3.fromRGB(50, 0, 0)
 
     local label = Instance.new("TextLabel", frame)
-    label.Text = "To prevent being kicked: Go to Delta > Settings > turn **Off Anti-Scam**, or use a safer executor like **KRNL**."
+    label.Text = "Use KRNL executor instead."
     label.Size = UDim2.new(1, -40, 0, 50)
     label.Position = UDim2.new(0, 20, 0, 60)
     label.TextScaled = true
@@ -58,7 +58,7 @@ local function createWarningBox(message)
     label.TextWrapped = true
 
     local button = Instance.new("TextButton", frame)
-    button.Text = "USE KRNL INSTEAD (COPY KRNL LINK)"
+    button.Text = "Download KRNL (KRNL.CAT)"
     button.Size = UDim2.new(0.9, 0, 0, 35)
     button.Position = UDim2.new(0.05, 0, 1, -45)
     button.BackgroundColor3 = Color3.fromRGB(70, 0, 0)
@@ -73,23 +73,23 @@ local function createWarningBox(message)
     button.MouseButton1Click:Connect(function()
         if setclipboard then
             setclipboard("https://krnl.cat")
-            button.Text = "✅ LINK COPIED!"
+            button.Text = "✅ KRNL.CAT LINK COPIED!"
         else
             button.Text = "❌ COPY NOT SUPPORTED"
         end
         task.delay(2, function()
-            button.Text = "USE KRNL INSTEAD (COPY KRNL LINK)"
+            button.Text = "Download KRNL (KRNL.CAT)"
         end)
     end)
 
     return frame
 end
 
--- SHOW WARNING FIRST
-local warningBox = createWarningBox("⚠️ To prevent being kicked: Go to Delta > Settings > turn OFF Anti-Scam, or use a safer executor like KRNL.")
+-- SHOW INFO FIRST
+local infoBox = createInformationBox()
 
 task.delay(10, function()
-    warningBox:Destroy()
+    infoBox:Destroy()
 
     -- MAIN GUI LOADER
     local Frame = Instance.new("Frame", ScreenGui)
