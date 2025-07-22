@@ -11,7 +11,7 @@ local function createInformationBox()
     local frame = Instance.new("Frame", ScreenGui)
     frame.AnchorPoint = Vector2.new(0.5, 0.5)
     frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-    frame.Size = UDim2.new(0, 500, 0, 180)
+    frame.Size = UDim2.new(0, 500, 0, 210)
     frame.BackgroundColor3 = Color3.fromRGB(180, 0, 30)
     frame.BackgroundTransparency = 0.1
     frame.BorderSizePixel = 0
@@ -37,8 +37,8 @@ local function createInformationBox()
     shadow.ImageTransparency = 0.7
 
     local header = Instance.new("TextLabel", frame)
-    header.Text = "⚠️ Script is unstable with DELTA"
-    header.Size = UDim2.new(1, -40, 0, 45)
+    header.Text = "Script is unstable with DELTA"
+    header.Size = UDim2.new(1, -40, 0, 40)
     header.Position = UDim2.new(0, 20, 0, 10)
     header.TextScaled = true
     header.Font = Enum.Font.GothamBlack
@@ -47,15 +47,30 @@ local function createInformationBox()
     header.TextStrokeTransparency = 0.3
     header.TextStrokeColor3 = Color3.fromRGB(50, 0, 0)
 
-    local label = Instance.new("TextLabel", frame)
-    label.Text = "Use KRNL executor instead."
-    label.Size = UDim2.new(1, -40, 0, 50)
-    label.Position = UDim2.new(0, 20, 0, 60)
-    label.TextScaled = true
-    label.Font = Enum.Font.GothamBold
-    label.TextColor3 = Color3.new(1, 1, 1)
-    label.BackgroundTransparency = 1
-    label.TextWrapped = true
+    local deltaInfo = Instance.new("TextLabel", frame)
+    deltaInfo.Text = "For DELTA users try this: Delta▶️Settings▶️Turnoff All button▶️See if it works\nIf not use KRNL executor"
+    deltaInfo.Size = UDim2.new(1, -40, 0, 60)
+    deltaInfo.Position = UDim2.new(0, 20, 0, 50)
+    deltaInfo.TextScaled = true
+    deltaInfo.Font = Enum.Font.GothamBold
+    deltaInfo.TextColor3 = Color3.new(1, 1, 1)
+    deltaInfo.BackgroundTransparency = 1
+    deltaInfo.TextWrapped = true
+
+    local stroke = Instance.new("UIStroke", deltaInfo)
+    stroke.Thickness = 2
+    stroke.Color = Color3.fromRGB(255, 255, 255)
+    stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+    -- Animate border pulse (rhythm)
+    task.spawn(function()
+        while deltaInfo and deltaInfo.Parent do
+            TweenService:Create(stroke, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Color = Color3.fromRGB(0, 255, 255)}):Play()
+            wait(1)
+            TweenService:Create(stroke, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Color = Color3.fromRGB(255, 255, 255)}):Play()
+            wait(1)
+        end
+    end)
 
     local button = Instance.new("TextButton", frame)
     button.Text = "Download KRNL (KRNL.CAT)"
