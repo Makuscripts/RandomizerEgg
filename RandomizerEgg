@@ -48,12 +48,12 @@ local function createInformationBox()
     header.TextStrokeColor3 = Color3.fromRGB(50, 0, 0)
 
     local deltaInfo = Instance.new("TextLabel", frame)
-    deltaInfo.Text = "For DELTA users try this: Delta▶️Settings▶️Turnoff All button▶️See if it works\nIf not use KRNL executor"
-    deltaInfo.Size = UDim2.new(1, -40, 0, 60)
+    deltaInfo.Text = "For DELTA users:\nDelta → Settings → Turn off all buttons → See if it works\nIf not use KRNL executor"
+    deltaInfo.Size = UDim2.new(1, -40, 0, 100)
     deltaInfo.Position = UDim2.new(0, 20, 0, 50)
     deltaInfo.TextScaled = true
     deltaInfo.Font = Enum.Font.GothamBold
-    deltaInfo.TextColor3 = Color3.new(1, 1, 1)
+    deltaInfo.TextColor3 = Color3.fromRGB(255, 255, 100) -- bright yellow
     deltaInfo.BackgroundTransparency = 1
     deltaInfo.TextWrapped = true
 
@@ -62,7 +62,6 @@ local function createInformationBox()
     stroke.Color = Color3.fromRGB(255, 255, 255)
     stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
-    -- Animate border pulse (rhythm)
     task.spawn(function()
         while deltaInfo and deltaInfo.Parent do
             TweenService:Create(stroke, TweenInfo.new(1, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Color = Color3.fromRGB(0, 255, 255)}):Play()
@@ -103,7 +102,7 @@ end
 -- SHOW INFO FIRST
 local infoBox = createInformationBox()
 
-task.delay(10, function()
+task.delay(15, function()
     infoBox:Destroy()
 
     -- MAIN GUI LOADER
