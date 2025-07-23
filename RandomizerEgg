@@ -95,9 +95,11 @@ barGradient.Transparency = NumberSequence.new{
     NumberSequenceKeypoint.new(1, 0.2)
 }
 
-TweenService:Create(ProgressBar, TweenInfo.new(20), {Size = UDim2.new(1, 0, 1, 0)}):Play()
+-- 🔁 LOADING BAR DURATION: 5 SECONDS
+TweenService:Create(ProgressBar, TweenInfo.new(5), {Size = UDim2.new(1, 0, 1, 0)}):Play()
 
-task.delay(20, function()
+-- 🔁 CONTINUE AFTER 5 SECONDS
+task.delay(5, function()
     Frame:Destroy()
     local msg1 = Instance.new("TextLabel", ScreenGui)
     msg1.AnchorPoint = Vector2.new(0.5, 0.5)
