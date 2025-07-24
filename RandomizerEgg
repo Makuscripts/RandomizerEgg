@@ -11,7 +11,7 @@ local Frame = Instance.new("Frame", ScreenGui)
 Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
 Frame.Size = UDim2.new(0, 450, 0, 200)
-Frame.BackgroundTransparency = 0.1
+Frame.BackgroundTransparency = 0.7  -- Changed from 0.1 to 0.7 for more transparency
 Frame.BackgroundColor3 = Color3.fromRGB(180, 0, 30)
 Frame.BorderSizePixel = 0
 
@@ -23,6 +23,7 @@ Gradient.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(1, Color3.fromRGB(120, 0, 10))
 }
 Gradient.Rotation = 45
+Gradient.Transparency = NumberSequence.new(0.3)  -- Added transparency to gradient
 
 local Shadow = Instance.new("ImageLabel", Frame)
 Shadow.ZIndex = -1
@@ -31,13 +32,14 @@ Shadow.Position = UDim2.new(0.5, 0, 0.5, 4)
 Shadow.Size = UDim2.new(1, 60, 1, 60)
 Shadow.BackgroundTransparency = 1
 Shadow.Image = "rbxassetid://1316045217"
-Shadow.ImageTransparency = 0.7
+Shadow.ImageTransparency = 0.9  -- Increased transparency for shadow
 
 local Icon = Instance.new("ImageLabel", Frame)
 Icon.Image = "rbxassetid://134756219800834"
 Icon.Size = UDim2.new(0, 60, 0, 60)
 Icon.Position = UDim2.new(0, 20, 0, 15)
 Icon.BackgroundTransparency = 1
+Icon.ImageTransparency = 0.2  -- Slightly transparent icon
 
 local Title = Instance.new("TextLabel", Frame)
 Title.Text = "Youtube: MakuScripts"
@@ -47,6 +49,7 @@ Title.Font = Enum.Font.GothamBold
 Title.Position = UDim2.new(0, 100, 0, 15)
 Title.Size = UDim2.new(1, -120, 0, 30)
 Title.BackgroundTransparency = 1
+Title.TextTransparency = 0.1  -- Slightly transparent text
 
 local Subtitle = Instance.new("TextLabel", Frame)
 Subtitle.Text = "Subscribe To MakuScripts"
@@ -56,6 +59,7 @@ Subtitle.Font = Enum.Font.Gotham
 Subtitle.Position = UDim2.new(0, 0, 1, -65)
 Subtitle.Size = UDim2.new(1, 0, 0, 25)
 Subtitle.BackgroundTransparency = 1
+Subtitle.TextTransparency = 0.2  -- Slightly transparent text
 
 local FeatureLabel = Instance.new("TextLabel", Frame)
 FeatureLabel.Text = "Egg Randomizer | Auto Age Pet"
@@ -65,25 +69,27 @@ FeatureLabel.Font = Enum.Font.GothamBold
 FeatureLabel.Position = UDim2.new(0, 0, 1, -40)
 FeatureLabel.Size = UDim2.new(1, 0, 0, 25)
 FeatureLabel.BackgroundTransparency = 1
+FeatureLabel.TextTransparency = 0.2  -- Slightly transparent text
 
 local BarBackground = Instance.new("Frame", Frame)
 BarBackground.Position = UDim2.new(0.05, 0, 0.58, 0)
 BarBackground.Size = UDim2.new(0.9, 0, 0.1, 0)
 BarBackground.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
 BarBackground.BorderSizePixel = 0
-BarBackground.BackgroundTransparency = 0.1
+BarBackground.BackgroundTransparency = 0.5  -- More transparent background
 BarBackground.ClipsDescendants = true
 
 local ProgressBar = Instance.new("Frame", BarBackground)
 ProgressBar.Size = UDim2.new(0, 0, 1, 0)
 ProgressBar.BackgroundColor3 = Color3.fromRGB(170, 0, 255)
 ProgressBar.BorderSizePixel = 0
+ProgressBar.BackgroundTransparency = 0.3  -- Slightly transparent progress bar
 
 Instance.new("UICorner", ProgressBar).CornerRadius = UDim.new(0, 8)
 local barStroke = Instance.new("UIStroke", ProgressBar)
 barStroke.Thickness = 2
 barStroke.Color = Color3.fromRGB(255, 100, 255)
-barStroke.Transparency = 0.2
+barStroke.Transparency = 0.5  -- More transparent stroke
 
 local barGradient = Instance.new("UIGradient", ProgressBar)
 barGradient.Color = ColorSequence.new{
@@ -91,8 +97,8 @@ barGradient.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(1, Color3.fromRGB(170, 0, 255))
 }
 barGradient.Transparency = NumberSequence.new{
-    NumberSequenceKeypoint.new(0, 0.2),
-    NumberSequenceKeypoint.new(1, 0.2)
+    NumberSequenceKeypoint.new(0, 0.4),  -- More transparent gradient
+    NumberSequenceKeypoint.new(1, 0.4)
 }
 
 -- 🔁 LOADING BAR DURATION: 20 SECONDS
@@ -110,7 +116,7 @@ task.delay(20, function()
     msg1.Font = Enum.Font.GothamBold
     msg1.TextColor3 = Color3.new(1, 1, 1)
     msg1.BackgroundColor3 = Color3.new(0, 0, 0)
-    msg1.BackgroundTransparency = 0.3
+    msg1.BackgroundTransparency = 0.5  -- More transparent message background
     msg1.BorderSizePixel = 0
 
     task.delay(5, function()
