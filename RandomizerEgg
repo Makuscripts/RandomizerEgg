@@ -6,12 +6,12 @@ local Player = Players.LocalPlayer
 local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
 ScreenGui.ResetOnSpawn = false
 
--- "UPDATED." POPUP
+-- "UPDATED." POPUP (Changed)
 local UpdatedPopup = Instance.new("TextLabel", ScreenGui)
 UpdatedPopup.AnchorPoint = Vector2.new(0.5, 0.5)
 UpdatedPopup.Position = UDim2.new(0.5, 0, 0.5, 0)
-UpdatedPopup.Size = UDim2.new(0, 300, 0, 60)
-UpdatedPopup.Text = "UPDATED."
+UpdatedPopup.Size = UDim2.new(0, 450, 0, 60)
+UpdatedPopup.Text = "Not working on Delta right now, use KRNL"
 UpdatedPopup.TextScaled = true
 UpdatedPopup.Font = Enum.Font.GothamBlack
 UpdatedPopup.TextColor3 = Color3.new(1, 1, 1)
@@ -26,9 +26,12 @@ Stroke.Color = Color3.fromRGB(255, 80, 80)
 Stroke.Thickness = 2
 Stroke.Transparency = 0.3
 
--- Fade out after 1.5 seconds
-task.delay(1.5, function()
+-- Fade out after 4.5 seconds (changed)
+task.delay(4.5, function()
     UpdatedPopup:Destroy()
+    
+    -- MAIN LOADER STARTS
+    -- (your loader code here stays the same)
 
     -- MAIN LOADER STARTS
     local Frame = Instance.new("Frame", ScreenGui)
